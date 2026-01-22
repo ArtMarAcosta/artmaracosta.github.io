@@ -170,7 +170,7 @@ section {
    ANIMACIONES SCROLL
 ========================= */
 
-#obra img,
+/* animan solo los textos */
 #obra p,
 #texto p {
   opacity: 0;
