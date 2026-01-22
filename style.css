@@ -1,11 +1,15 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
+/* =========================
+   BODY
+========================= */
 body {
   font-family: 'Libre Baskerville', serif;
   background-color: #f2efe9;
@@ -13,16 +17,11 @@ body {
   line-height: 1.8;
 }
 
-/* SECCIONES GENERALES */
+/* =========================
+   SECCIONES GENERALES
+========================= */
 section {
   padding: 160px 12%;
-}
-/* HERO NO HEREDA EL PADDING GENERAL */
-#hero {
-  padding: 0 !important;
-}
-#hero + section {
-  padding-top: 160px;
 }
 
 /* =========================
@@ -31,20 +30,25 @@ section {
 
 #hero {
   position: relative;
+  width: 100vw;
   height: 100vh;
-  width: 100%;
-  padding: 0; /* clave */
+  padding: 0;
+  overflow: hidden;
+
   background-color: #f1f0ec;
   background-image:
-    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px);
   background-size: 3px 3px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-/* PINTAR gigante */
+/* =========================
+   PINTAR FONDO TOTAL
+========================= */
+
 .pintar-bg {
   position: absolute;
   inset: 0;
@@ -52,22 +56,47 @@ section {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  pointer-events: none;
 }
 
 .pintar-bg span {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 110vh;           /* CLAVE */
   font-weight: 900;
+
+  /* ocupa TODA la pantalla */
+  font-size: 100vmin; /* clave: entra en alto y ancho */
+  line-height: 0.78;
+
   color: transparent;
-  -webkit-text-stroke: 2px #777;
-  opacity: 0.22;
+  -webkit-text-stroke: 2px rgba(80, 80, 80, 0.6);
+
   white-space: nowrap;
-  line-height: 0.8;
-transform: scaleX(0.68); /* lo comprime para que entre */
+
+  /* estirado sutil */
+  transform: scaleX(0.95);
+
+  /* fade */
+  opacity: 0.18;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
 }
 
+/* =========================
+   CONTENIDO HERO
+========================= */
 
-/* CONTENIDO HERO */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -83,31 +112,14 @@ transform: scaleX(0.68); /* lo comprime para que entre */
 }
 
 .hero-frase {
-  margin-top: 22px;
+  margin-top: 24px;
   padding: 12px 0;
   font-size: 1.3rem;
   color: #4b2e6f;
   text-align: center;
-  border-top: 1px solid rgba(75, 46, 111, 0.4);
-  border-bottom: 1px solid rgba(75, 46, 111, 0.4);
-}
 
-/* =========================
-   UMBRAL (si lo volvés a usar)
-========================= */
-
-#umbral {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.frase {
-  font-size: 2.2rem;
-  max-width: 600px;
-  text-align: center;
-  line-height: 1.4;
+  border-top: 1px solid rgba(75, 46, 111, 0.35);
+  border-bottom: 1px solid rgba(75, 46, 111, 0.35);
 }
 
 /* =========================
@@ -156,7 +168,6 @@ transform: scaleX(0.68); /* lo comprime para que entre */
 
 /* =========================
    ANIMACIONES SCROLL
-   (solo obra y texto, NO hero)
 ========================= */
 
 #obra img,
