@@ -3,32 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Mar Acosta</title>
+
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Fuente -->
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
-  <script>
-  const elements = document.querySelectorAll('img, p');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  });
-
-  elements.forEach(el => {
-    observer.observe(el);
-  });
-</script>
-
 
 <body>
 
@@ -42,21 +28,21 @@
   <!-- OBRA -->
   <section id="obra">
 
-  <img src="images/arbol.jpg" alt="Árbol de la vida">
+    <img src="images/ARBOL%20DE%20LA%20VIDA.jpg" alt="Árbol de la vida">
 
-  <p class="obra-texto">
-    Óleo sobre tela.
-  </p>
+    <p class="obra-texto">
+      Óleo sobre tela.
+    </p>
 
-  <img src="images/img-3999.jpg" alt="Detalle de obra">
+    <img src="images/IMG_3999.jpg" alt="Detalle de obra">
 
-  <p class="obra-texto">
-    El cuerpo como territorio en transformación.
-  </p>
+    <p class="obra-texto">
+      El cuerpo como territorio en transformación.
+    </p>
 
-  <img src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
+    <img src="images/NATURALEZA%20ALI3N.png" alt="Naturaleza Ali3n">
 
-</section>
+  </section>
 
   <!-- TEXTO -->
   <section id="texto">
@@ -69,11 +55,46 @@
   <section id="contacto">
     <p>Mar Acosta</p>
     <p>
-      <a href="mailto:maracosta.artista@gmail.com">maracosta.artista@gmail.com</a>
+      <a href="mailto:maracosta.artista@gmail.com">
+        maracosta.artista@gmail.com
+      </a>
     </p>
     <p>
-      <a href="https://instagram.com/astro.mar_" target="_blank">Instagram</a>
+      <a href="https://instagram.com/astro.mar_" target="_blank">
+        Instagram
+      </a>
     </p>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const elements = document.querySelectorAll("img, p");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        {
+          threshold: 0.1
+        }
+      );
+
+      elements.forEach((el) => {
+        observer.observe(el);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
+
   </section>
 
 </body>
