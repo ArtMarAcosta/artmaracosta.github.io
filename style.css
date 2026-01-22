@@ -56,7 +56,7 @@ section {
   opacity: 0.22;
   white-space: nowrap;
   line-height: 0.8;
-  transform: scaleX(0.95);   /* lo comprime para que entre */
+  transform: scaleX(0.75);   /* lo comprime para que entre */
 }
 
 
