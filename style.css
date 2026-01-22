@@ -1,184 +1,44 @@
-/* =========================
-   RESET
-========================= */
+/* RESET TOTAL */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =========================
-   BODY
-========================= */
+/* BODY */
 body {
-  font-family: 'Libre Baskerville', serif;
-  background-color: #f2efe9;
-  color: #1f1f1f;
-  line-height: 1.8;
+  font-family: serif;
+  background: #f2efe9;
+  color: #111;
 }
 
-/* =========================
-   SECCIONES GENERALES
-========================= */
+/* SECCIONES */
 section {
-  padding: 160px 12%;
+  padding: 80px 10%;
 }
 
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 #hero {
-  position: relative;
-  width: 100vw;
   height: 100vh;
-  padding: 0;
-  overflow: hidden;
-
-  background-color: #f1f0ec;
-  background-image:
-    radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px);
-  background-size: 3px 3px;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ddd;
 }
 
-/* =========================
-   PINTAR FONDO TOTAL
-========================= */
-
-.pintar-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  pointer-events: none;
+/* OBRA */
+#obra {
+  background: #fff;
 }
 
-.pintar-bg span {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-
-  /* ocupa TODA la pantalla */
-  font-size: 100vmin; /* clave: entra en alto y ancho */
-  line-height: 0.78;
-
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(80, 80, 80, 0.6);
-
-  white-space: nowrap;
-
-  /* estirado sutil */
-  transform: scaleX(0.95);
-
-  /* fade */
-  opacity: 0.18;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 20%,
-    black 80%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 20%,
-    black 80%,
-    transparent 100%
-  );
-}
-
-/* =========================
-   CONTENIDO HERO
-========================= */
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4.8rem;
-  font-weight: 700;
-  color: #4b2e6f;
-  margin: 0;
-}
-
-.hero-frase {
-  margin-top: 24px;
-  padding: 12px 0;
-  font-size: 1.3rem;
-  color: #4b2e6f;
-  text-align: center;
-
-  border-top: 1px solid rgba(75, 46, 111, 0.35);
-  border-bottom: 1px solid rgba(75, 46, 111, 0.35);
-}
-
-/* =========================
-   OBRA
-========================= */
-
+/* IMÁGENES — FORZADAS A VERSE */
 #obra img {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
   width: 100%;
-  max-width: 1100px;
-  display: block;
-  margin: 0 auto 120px auto;
-}
-
-/* TEXTO ENTRE OBRAS */
-.obra-texto {
-  max-width: 620px;
-  margin: 80px auto 160px auto;
-  font-size: 1.3rem;
-  text-align: center;
-  opacity: 0.7;
-}
-
-/* =========================
-   TEXTO
-========================= */
-
-#texto p {
-  font-size: 1.6rem;
-  margin-bottom: 80px;
-  letter-spacing: 0.01em;
-}
-
-/* =========================
-   CONTACTO
-========================= */
-
-#contacto {
-  font-size: 1rem;
-  opacity: 0.8;
-}
-
-#contacto a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* =========================
-   ANIMACIONES SCROLL
-========================= */
-
-/* animan solo los textos */
-#obra p,
-#texto p {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1.2s ease;
-}
-
-.visible {
-  opacity: 1;
-  transform: translateY(0);
+  max-width: 900px;
+  margin: 60px auto;
+  border: 3px solid red; /* DEBUG VISUAL */
 }
