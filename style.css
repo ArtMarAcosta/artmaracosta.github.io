@@ -49,14 +49,14 @@ section {
 
 .pintar-bg span {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 100vh;           /* CLAVE */
+  font-size: 110vh;           /* CLAVE */
   font-weight: 900;
   color: transparent;
   -webkit-text-stroke: 2px #777;
   opacity: 0.22;
   white-space: nowrap;
   line-height: 0.8;
-  transform: scaleX(0.85);   /* lo comprime para que entre */
+  transform: scaleX(0.95);   /* lo comprime para que entre */
 }
 
 
