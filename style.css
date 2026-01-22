@@ -94,13 +94,18 @@ p {
 
 #hero {
   position: relative;
-  min-height: 100vh;
-  background-color: #f6f5f2;
-  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  background-color: #f1f0ec;
+  background-image: 
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
+
 
 .pintar-bg {
   position: absolute;
