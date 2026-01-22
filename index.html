@@ -17,46 +17,40 @@
 </head>
 
 <body>
-<!-- HERO / UMBRAL -->
-<section id="hero">
 
-<div class="pintar-bg">
-  <span>PINTAR</span>
-</div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="pintar-bg">
+      <span>PINTAR</span>
+    </div>
 
-  <div class="hero-content">
-    <h1>MAR ACOSTA</h1>
-    <p class="hero-frase">gritos de colores</p>
-  </div>
-
-</section>
-
-  <!-- UMBRAL -->
-  <section id="umbral">
-    <p class="frase">
-      Pinto desde el desconocimiento.
-    </p>
+    <div class="hero-content">
+      <h1>MAR ACOSTA</h1>
+      <p class="hero-frase">gritos de colores</p>
+    </div>
   </section>
 
- <!-- OBRA -->
-<section id="obra">
+  <!-- (UMBRAL VIEJO DESACTIVADO POR AHORA) -->
+  <!--
+  <section id="umbral">
+    <p class="frase">Pinto desde el desconocimiento.</p>
+  </section>
+  -->
 
-  <img src="images/arbol.jpg" alt="Árbol de la vida">
+  <!-- OBRA -->
+  <section id="obra">
+    <img src="images/arbol.jpg" alt="Árbol de la vida">
 
-  <p class="obra-texto">
-    Óleo sobre tela.
-  </p>
+    <p class="obra-texto">Óleo sobre tela.</p>
 
-  <img src="images/img-3999.jpg" alt="Detalle de obra">
+    <img src="images/img-3999.jpg" alt="Detalle de obra">
 
-  <p class="obra-texto">
-    El cuerpo como territorio en transformación.
-  </p>
+    <p class="obra-texto">
+      El cuerpo como territorio en transformación.
+    </p>
 
-  <img src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
-
-</section>
-
+    <img src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
+  </section>
 
   <!-- TEXTO -->
   <section id="texto">
@@ -83,7 +77,6 @@
   <!-- SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-
       const elements = document.querySelectorAll("img, p");
 
       const observer = new IntersectionObserver(
@@ -94,22 +87,13 @@
             }
           });
         },
-        {
-          threshold: 0.1
-        }
+        { threshold: 0.1 }
       );
 
-      elements.forEach((el) => {
-        observer.observe(el);
-      });
-
+      elements.forEach((el) => observer.observe(el));
     });
   </script>
 
 </body>
 </html>
 
-  </section>
-
-</body>
-</html>
