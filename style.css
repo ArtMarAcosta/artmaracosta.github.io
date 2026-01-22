@@ -17,6 +17,13 @@ body {
 section {
   padding: 160px 12%;
 }
+/* HERO NO HEREDA EL PADDING GENERAL */
+#hero {
+  padding: 0 !important;
+}
+#hero + section {
+  padding-top: 160px;
+}
 
 /* =========================
    HERO
@@ -56,7 +63,7 @@ section {
   opacity: 0.22;
   white-space: nowrap;
   line-height: 0.8;
-  transform: scaleX(0.95);   /* lo comprime para que entre */
+transform: scaleX(0.68); /* lo comprime para que entre */
 }
 
 
