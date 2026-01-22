@@ -70,3 +70,15 @@ section {
   color: inherit;
   text-decoration: none;
 }
+
+img, p {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
