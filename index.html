@@ -13,6 +13,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
+  <script>
+  const elements = document.querySelectorAll('img, p');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+
+  elements.forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+
 <body>
 
   <!-- UMBRAL -->
