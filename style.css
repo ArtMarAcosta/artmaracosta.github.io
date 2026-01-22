@@ -6,9 +6,9 @@
 
 body {
   font-family: 'Cormorant Garamond', serif;
-  background-color: #f5f3ee;
-  color: #222;
-  line-height: 1.6;
+  background-color: #f2efe9; /* blanco roto */
+  color: #1f1f1f;
+  line-height: 1.8;
 }
 
 /* UMBRAL */
@@ -27,7 +27,7 @@ body {
 
 /* SECCIONES */
 section {
-  padding: 120px 10%;
+  padding: 160px 12%;
 }
 
 /* OBRA */
@@ -38,8 +38,8 @@ section {
 
 /* TEXTO */
 #texto p {
-  font-size: 1.4rem;
-  margin-bottom: 60px;
+  font-size: 1.6rem;
+  margin-bottom: 80px;
 }
 
 /* CONTACTO */
