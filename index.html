@@ -3,98 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Mar Acosta</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Fuente -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- HERO -->
   <section id="hero">
-    <div class="pintar-bg">
-      <span>PINTAR</span>
-    </div>
-
-    <div class="hero-content">
-      <h1>MAR ACOSTA</h1>
-      <p class="hero-frase">gritos de colores</p>
-    </div>
+    <h1>MAR ACOSTA</h1>
+    <p class="tagline">gritos de colores</p>
   </section>
 
-  <!-- (UMBRAL VIEJO DESACTIVADO POR AHORA) -->
-  <!--
-  <section id="umbral">
-    <p class="frase">Pinto desde el desconocimiento.</p>
+  <section class="texto">
+    <p>
+      Pinto porque hay cosas que no se acomodan en las palabras.
+      La pintura aparece como una necesidad más que como una decisión.
+    </p>
+    <p>
+      Me interesa el momento en que la imagen todavía no se cerró,
+      cuando el error y la intuición conviven.
+    </p>
   </section>
-  -->
 
-  <!-- OBRA -->
+  <section class="texto">
+    <p>
+      Trabajo principalmente con óleo porque permite acumular tiempo:
+      capas, correcciones, dudas. La pintura no avanza en línea recta,
+      se vuelve, se tapa, se contradice.
+    </p>
+  </section>
+
   <section id="obra">
     <img src="images/arbol.jpg" alt="Árbol de la vida">
-
-    <p class="obra-texto">Óleo sobre tela.</p>
-
     <img src="images/img-3999.jpg" alt="Detalle de obra">
-
-    <p class="obra-texto">
-      El cuerpo como territorio en transformación.
-    </p>
-
     <img src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
   </section>
 
-  <!-- TEXTO -->
-  <section id="texto">
-    <p>Pinto porque hay cosas que no se acomodan en las palabras.</p>
-    <p>El cuerpo no es una figura cerrada.</p>
-    <p>La realidad se ablanda.</p>
+  <section class="texto">
+    <p>
+      El cuerpo, el paisaje y la tecnología no aparecen como opuestos,
+      sino como territorios que se contaminan.
+      Pinto mundos levemente corridos de la realidad,
+      donde lo extraño no irrumpe, sino que ya estaba ahí.
+    </p>
   </section>
 
-  <!-- CONTACTO -->
   <section id="contacto">
-    <p>Mar Acosta</p>
-    <p>
-      <a href="mailto:maracosta.artista@gmail.com">
-        maracosta.artista@gmail.com
-      </a>
-    </p>
-    <p>
-      <a href="https://instagram.com/astro.mar_" target="_blank">
-        Instagram
-      </a>
-    </p>
+    <p>maracosta.artista@gmail.com</p>
+    <a href="https://instagram.com/astro.mar_" target="_blank">Instagram</a>
   </section>
-
-  <!-- SCRIPT -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const elements = document.querySelectorAll("img, p");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      elements.forEach((el) => observer.observe(el));
-    });
-  </script>
 
 </body>
 </html>
+
 
