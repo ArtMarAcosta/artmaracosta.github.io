@@ -115,3 +115,32 @@ section {
   text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.4);
 }
+
+/* BLOQUE TEXTO + OBRA */
+
+.obra-bloque {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 180px;
+}
+
+.obra-bloque img {
+  width: 100%;
+}
+
+/* TEXTO LATERAL */
+.obra-texto-lado p {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+/* PREGUNTAS DISPARADORAS */
+.pregunta {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #f0c6ff;
+}
+
