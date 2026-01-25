@@ -144,3 +144,13 @@ section {
   color: #f0c6ff;
 }
 
+#contacto {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #f3c1d9;
+  opacity: 0.85;
+}
+
+#contacto a {
+  color: #f3c1d9;
+}
