@@ -122,6 +122,23 @@ section {
     font-size: 3.5rem;
   }
 }
+
+.obra-info {
+  text-align: center;
+  margin-bottom: 120px;
+}
+
+.obra-titulo {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.obra-detalle {
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+
 /* =========================
    MENU DESPLEGABLE
 ========================= */
