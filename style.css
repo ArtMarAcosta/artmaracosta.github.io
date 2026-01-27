@@ -157,6 +157,13 @@ section {
   cursor: pointer;
   color: #e7c6ff; /* lila suave */
 }
+.menu-panel a {
+  color: #e7c6ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;   /* CLAVE */
+}
 
 .menu-panel {
   position: absolute;
@@ -169,12 +176,6 @@ section {
   gap: 14px;
 }
 
-.menu-panel a {
-  color: #e7c6ff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-}
 
 .menu-panel a:hover {
   opacity: 0.7;
