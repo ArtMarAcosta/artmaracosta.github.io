@@ -7,21 +7,18 @@
 
 /* BODY */
 body {
-  font-family: 'Space Grotesk', sans-serif;
-  background-color: #151522; /* azul violeta oscuro */
-  color: #eae7e3;
+  font-family: 'Inter', sans-serif;
+  background-color: #15151d; /* azul oscuro / violeta */
+  color: #f2f2f2;
   line-height: 1.8;
 }
 
-/* SECCIONES */
+/* SECCIONES GENERALES */
 section {
   padding: 140px 12%;
 }
 
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -29,128 +26,99 @@ section {
   justify-content: center;
   align-items: center;
   background:
-    radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 60%),
-    linear-gradient(180deg, #1a1630, #12121c);
+    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 4px 4px;
   text-align: center;
 }
 
-/* NOMBRE */
 #hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #b79cff; /* lila protagonista */
+  color: #b38cff; /* violeta */
 }
 
-/* FRASE */
 .tagline {
-  margin-top: 18px;
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
-  text-transform: lowercase;
-  opacity: 0.8;
-  position: relative;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  color: #e6c8ff;
+  border-top: 1px solid rgba(230,200,255,0.4);
+  border-bottom: 1px solid rgba(230,200,255,0.4);
+  padding: 12px 0;
 }
 
-.tagline::before,
-.tagline::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: rgba(255,255,255,0.4);
-  margin: 12px auto;
-}
-
-/* =========================
-   TEXTO
-========================= */
-
-.texto {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
+/* TEXTO */
 .texto p {
+  max-width: 700px;
+  margin: 0 auto;
   font-size: 1.15rem;
-  margin-bottom: 60px;
   opacity: 0.9;
 }
 
-/* =========================
-   OBRA
-========================= */
-
+/* OBRA */
 #obra {
   display: flex;
   flex-direction: column;
-  gap: 140px;
-  align-items: center;
+  gap: 180px;
 }
 
-#obra img {
-  width: 100%;
-  max-width: 1000px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-  transition: transform 0.6s ease;
-}
-
-#obra img:hover {
-  transform: scale(1.02);
-}
-
-/* =========================
-   CONTACTO
-========================= */
-
-#contacto {
-  text-align: center;
-  padding-bottom: 80px;
-  opacity: 0.75;
-}
-
-#contacto a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-}
-
-/* BLOQUE TEXTO + OBRA */
-
-.obra-bloque {
+.bloque {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
-  margin-bottom: 180px;
 }
 
-.obra-bloque img {
+.bloque.invertido {
+  direction: rtl;
+}
+
+.bloque.invertido img,
+.bloque.invertido p {
+  direction: ltr;
+}
+
+.bloque img {
   width: 100%;
+  display: block;
 }
 
-/* TEXTO LATERAL */
-.obra-texto-lado p {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  opacity: 0.9;
-}
-
-/* PREGUNTAS DISPARADORAS */
-.pregunta {
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: #f0c6ff;
-}
-
-#contacto {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #f3c1d9;
+.bloque p {
+  font-size: 1.1rem;
   opacity: 0.85;
 }
 
+/* SEPARADOR */
+.separador {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 180, 220, 0.4);
+  margin: 200px 12% 80px 12%;
+}
+
+/* CONTACTO */
+#contacto {
+  text-align: center;
+  padding-bottom: 120px;
+}
+
 #contacto a {
-  color: #f3c1d9;
+  color: #f2b3c6;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+#contacto a:hover {
+  opacity: 0.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .bloque {
+    grid-template-columns: 1fr;
+  }
+
+  #hero h1 {
+    font-size: 3.5rem;
+  }
 }
