@@ -52,9 +52,116 @@
   <p class="obra-detalle">40 x 50 cm</p>
 </div>
 
- 
-  
 </section>
+
+  <section class="grilla-mensual">
+
+  <div class="mes">
+    <img src="images/enero.jpg" alt="Enero 2025" data-lightbox>
+    <span>Enero 2025</span>
+  </div>
+
+  <div class="mes">
+    <img src="images/febrero.jpg" alt="Febrero 2025" data-lightbox>
+    <span>Febrero 2025</span>
+  </div>
+
+  <div class="mes">
+    <img src="images/marzo.jpg" alt="Marzo 2025" data-lightbox>
+    <span>Marzo 2025</span>
+  </div>
+
+  <div class="mes">
+    <img src="images/abril.jpg" alt="Abril 2025" data-lightbox>
+    <span>Abril 2025</span>
+  </div>
+
+  <div class="mes">
+    <img src="images/mayo.jpg" alt="Mayo 2025" data-lightbox>
+    <span>Mayo 2025</span>
+  </div>
+    <div class="mes">
+    <img src="images/junio.jpg" alt="Junio 2025" data-lightbox>
+    <span>Junio 2025</span>
+  </div>
+      <div class="mes">
+    <img src="images/julio.jpg" alt="Julio 2025" data-lightbox>
+    <span>Julio 2025</span>
+  </div>
+      <div class="mes">
+    <img src="images/agosto.jpg" alt="Agosto 2025" data-lightbox>
+    <span>Agosto 2025</span>
+  </div>
+      <div class="mes">
+    <img src="images/septiembre.jpg" alt="Septiembre 2025" data-lightbox>
+    <span>Septiembre 2025</span>
+  </div>
+      <div class="mes">
+    <img src="images/octubre.jpg" alt="Octubre 2025" data-lightbox>
+    <span>Octubre 2025</span>
+  </div>
+      <div class="mes">
+    <img src="images/noviembre.jpg" alt="Noviembre 2025" data-lightbox>
+    <span>Noviembre 2025</span>
+  </div>
+  
+  
+  </section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="cerrar">&times;</span>
+  <span class="flecha izquierda">&#10094;</span>
+  <img id="lightbox-img" src="">
+  <span class="flecha derecha">&#10095;</span>
+</div>
+
+<script>
+  const imagenes = document.querySelectorAll("[data-lightbox]");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const cerrar = document.querySelector(".cerrar");
+  const flechaIzq = document.querySelector(".flecha.izquierda");
+  const flechaDer = document.querySelector(".flecha.derecha");
+
+  let indiceActual = 0;
+
+  function mostrarImagen(index) {
+    if (index < 0) index = imagenes.length - 1;
+    if (index >= imagenes.length) index = 0;
+    indiceActual = index;
+    lightboxImg.src = imagenes[indiceActual].src;
+  }
+
+  imagenes.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      indiceActual = index;
+      mostrarImagen(indiceActual);
+      lightbox.classList.add("activo");
+    });
+  });
+
+  flechaIzq.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mostrarImagen(indiceActual - 1);
+  });
+
+  flechaDer.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mostrarImagen(indiceActual + 1);
+  });
+
+  cerrar.addEventListener("click", () => {
+    lightbox.classList.remove("activo");
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove("activo");
+    }
+  });
+</script>
+
   
     <!-- SEPARADOR -->
   <hr class="separador">
