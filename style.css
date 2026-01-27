@@ -122,3 +122,48 @@ section {
     font-size: 3.5rem;
   }
 }
+/* =========================
+   MENU DESPLEGABLE
+========================= */
+
+.menu {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #e7c6ff; /* lila suave */
+}
+
+.menu-panel {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: rgba(20, 20, 30, 0.95);
+  padding: 20px 28px;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-panel a {
+  color: #e7c6ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.menu-panel a:hover {
+  opacity: 0.7;
+}
+
+/* abrir menú */
+.menu:hover .menu-panel {
+  display: flex;
+}
