@@ -129,42 +129,39 @@
   </div>
 </section>
 
-<!-- LIGHTBOX (UNICO) -->
-<div id="lightbox" aria-hidden="true">
-  <span class="cerrar" id="cerrar-lightbox">&times;</span>
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="cerrar">&times;</span>
 
-  <span class="flecha izquierda" id="flecha-izq">&#10094;</span>
+  <span class="flecha izquierda">&#10094;</span>
 
-  <div class="lightbox-content" id="lightbox-content">
+  <div class="lightbox-content">
     <img id="lightbox-img" src="" alt="">
-    <div class="lightbox-hint" id="lightbox-hint">
-      Scroll para zoom · Arrastrá para mover · Doble click para reset
-    </div>
   </div>
 
-  <span class="flecha derecha" id="flecha-der">&#10095;</span>
+  <span class="flecha derecha">&#10095;</span>
 </div>
 
 <script>
-  // IMÁGENES DE LA SERIE (con flechas)
+  // =========================
+  // ELEMENTOS
+  // =========================
   const imagenesSerie = document.querySelectorAll("[data-lightbox]");
-
-  // IMÁGENES GRANDES (modo museo)
   const imagenesGrandes = document.querySelectorAll(".obra-click");
 
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxContent = document.getElementById("lightbox-content");
-
-  const cerrarBtn = document.getElementById("cerrar-lightbox");
-  const flechaIzq = document.getElementById("flecha-izq");
-  const flechaDer = document.getElementById("flecha-der");
-  const hint = document.getElementById("lightbox-hint");
+  const cerrar = document.querySelector(".cerrar");
+  const flechaIzq = document.querySelector(".flecha.izquierda");
+  const flechaDer = document.querySelector(".flecha.derecha");
+  const lightboxContent = document.querySelector(".lightbox-content");
 
   let indiceActual = 0;
-  let modoSerie = true; // true = serie mensual / false = obras grandes
+  let modoSerie = true; // true = grilla mensual / false = obras grandes
 
-  // ===== ZOOM + PAN =====
+  // =========================
+  // ZOOM + DRAG (MUSEO)
+  // =========================
   let scale = 1;
   let translateX = 0;
   let translateY = 0;
@@ -173,73 +170,160 @@
   let startX = 0;
   let startY = 0;
 
-  function applyTransform() {
+  function applyTransform(){
     lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
   }
 
-  function resetZoom() {
+  function resetZoom(){
     scale = 1;
     translateX = 0;
     translateY = 0;
-    lightbox.classList.remove("zoomed");
     applyTransform();
+    lightboxContent.classList.remove("zoom-activo");
   }
 
-  function setZoom(newScale) {
-    scale = Math.min(4, Math.max(1, newScale)); // 1x a 4x
+  function setZoom(newScale){
+    scale = Math.min(Math.max(newScale, 1), 5);
+    applyTransform();
 
-    if (scale > 1) {
-      lightbox.classList.add("zoomed");
-    } else {
-      lightbox.classList.remove("zoomed");
-      translateX = 0;
-      translateY = 0;
+    if(scale > 1){
+      lightboxContent.classList.add("zoom-activo");
+    }else{
+      lightboxContent.classList.remove("zoom-activo");
+    }
+  }
+
+  // rueda del mouse (zoom suave)
+  lightboxContent.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const delta = -e.deltaY * 0.0015;
+    setZoom(scale + delta);
+  }, { passive: false });
+
+  // drag con mouse cuando hay zoom
+  lightboxContent.addEventListener("mousedown", (e) => {
+    if(scale <= 1) return;
+    isDragging = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if(!isDragging) return;
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+    applyTransform();
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  // doble click para reset (desktop)
+  lightboxContent.addEventListener("dblclick", () => {
+    resetZoom();
+  });
+
+  // =========================
+  // PINCH ZOOM (CELU)
+  // =========================
+  let lastTouchDistance = null;
+  let lastTouchMidpoint = null;
+
+  function getDistance(t1, t2){
+    const dx = t2.clientX - t1.clientX;
+    const dy = t2.clientY - t1.clientY;
+    return Math.sqrt(dx*dx + dy*dy);
+  }
+
+  function getMidpoint(t1, t2){
+    return {
+      x: (t1.clientX + t2.clientX) / 2,
+      y: (t1.clientY + t2.clientY) / 2
+    };
+  }
+
+  lightboxContent.style.touchAction = "none";
+
+  lightboxContent.addEventListener("touchstart", (e) => {
+    if(e.touches.length === 2){
+      lastTouchDistance = getDistance(e.touches[0], e.touches[1]);
+      lastTouchMidpoint = getMidpoint(e.touches[0], e.touches[1]);
     }
 
-    applyTransform();
-  }
+    if(e.touches.length === 1 && scale > 1){
+      isDragging = true;
+      startX = e.touches[0].clientX - translateX;
+      startY = e.touches[0].clientY - translateY;
+    }
+  }, { passive: false });
 
-  // ===== ABRIR LIGHTBOX =====
-  function abrirLightbox(src, esSerie) {
-    modoSerie = esSerie;
+  lightboxContent.addEventListener("touchmove", (e) => {
+    e.preventDefault();
 
-    // modo museo para obras grandes (tapa menos)
-    if (!modoSerie) {
-      lightbox.classList.add("modo-museo");
-    } else {
-      lightbox.classList.remove("modo-museo");
+    if(e.touches.length === 2){
+      const newDistance = getDistance(e.touches[0], e.touches[1]);
+      const midpoint = getMidpoint(e.touches[0], e.touches[1]);
+
+      if(lastTouchDistance){
+        const delta = (newDistance - lastTouchDistance) * 0.005;
+        setZoom(scale + delta);
+      }
+
+      if(lastTouchMidpoint && scale > 1){
+        translateX += (midpoint.x - lastTouchMidpoint.x);
+        translateY += (midpoint.y - lastTouchMidpoint.y);
+        applyTransform();
+      }
+
+      lastTouchDistance = newDistance;
+      lastTouchMidpoint = midpoint;
+      return;
     }
 
-    // flechas solo si es serie
-    flechaIzq.style.display = modoSerie ? "block" : "none";
-    flechaDer.style.display = modoSerie ? "block" : "none";
+    if(e.touches.length === 1 && isDragging && scale > 1){
+      translateX = e.touches[0].clientX - startX;
+      translateY = e.touches[0].clientY - startY;
+      applyTransform();
+    }
+  }, { passive: false });
 
-    // mostrar hint un ratito
-    hint.classList.add("visible");
-    setTimeout(() => hint.classList.remove("visible"), 2500);
+  lightboxContent.addEventListener("touchend", () => {
+    lastTouchDistance = null;
+    lastTouchMidpoint = null;
+    isDragging = false;
+  });
 
-    lightboxImg.src = src;
-    lightbox.classList.add("activo");
-    lightbox.setAttribute("aria-hidden", "false");
-
-    resetZoom();
-  }
-
-  function cerrarLightbox() {
-    lightbox.classList.remove("activo");
-    lightbox.setAttribute("aria-hidden", "true");
-    resetZoom();
-  }
-
+  // =========================
+  // LIGHTBOX FUNCIONES
+  // =========================
   function mostrarImagenSerie(index) {
     if (index < 0) index = imagenesSerie.length - 1;
     if (index >= imagenesSerie.length) index = 0;
     indiceActual = index;
     lightboxImg.src = imagenesSerie[indiceActual].src;
-    resetZoom();
   }
 
-  // Click en imágenes de la serie (con navegación)
+  function abrirLightbox(src, esSerie) {
+    modoSerie = esSerie;
+
+    // reset zoom cada vez que abro
+    resetZoom();
+
+    // flechas solo en serie
+    if (modoSerie) {
+      flechaIzq.style.display = "block";
+      flechaDer.style.display = "block";
+    } else {
+      flechaIzq.style.display = "none";
+      flechaDer.style.display = "none";
+    }
+
+    lightboxImg.src = src;
+    lightbox.classList.add("activo");
+  }
+
+  // Click serie mensual
   imagenesSerie.forEach((img, index) => {
     img.addEventListener("click", () => {
       indiceActual = index;
@@ -247,14 +331,14 @@
     });
   });
 
-  // Click en imágenes grandes (modo museo)
+  // Click obras grandes
   imagenesGrandes.forEach((img) => {
     img.addEventListener("click", () => {
       abrirLightbox(img.src, false);
     });
   });
 
-  // Flechas SOLO si estás en modo serie
+  // Flechas (solo serie)
   flechaIzq.addEventListener("click", (e) => {
     e.stopPropagation();
     if (!modoSerie) return;
@@ -267,70 +351,39 @@
     mostrarImagenSerie(indiceActual + 1);
   });
 
-  // Cerrar
-  cerrarBtn.addEventListener("click", cerrarLightbox);
+  // cerrar
+  cerrar.addEventListener("click", () => {
+    lightbox.classList.remove("activo");
+  });
 
+  // click en fondo cierra
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) cerrarLightbox();
+    if (e.target === lightbox) {
+      lightbox.classList.remove("activo");
+    }
   });
 
-  // ESC para cerrar
+  // ESC cierra
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") cerrarLightbox();
-  });
-
-  // ===== ZOOM EVENTS =====
-
-  // click = zoom rápido
-  lightboxContent.addEventListener("click", (e) => {
-    if (isDragging) return;
-
-    if (scale === 1) {
-      setZoom(2);
-    } else {
-      resetZoom();
+    if (e.key === "Escape") {
+      lightbox.classList.remove("activo");
     }
   });
 
-  // doble click = reset
-  lightboxContent.addEventListener("dblclick", (e) => {
-    e.preventDefault();
-    resetZoom();
-  });
+  // teclado para navegar (solo serie)
+  document.addEventListener("keydown", (e) => {
+    if(!lightbox.classList.contains("activo")) return;
+    if(!modoSerie) return;
 
-  // ruedita = zoom suave
-  lightboxContent.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    const zoomIntensity = 0.12;
-
-    if (e.deltaY < 0) {
-      setZoom(scale + zoomIntensity);
-    } else {
-      setZoom(scale - zoomIntensity);
+    if(e.key === "ArrowLeft"){
+      mostrarImagenSerie(indiceActual - 1);
     }
-  }, { passive: false });
-
-  // arrastrar = pan cuando hay zoom
-  lightboxContent.addEventListener("mousedown", (e) => {
-    if (scale === 1) return;
-    isDragging = true;
-    startX = e.clientX - translateX;
-    startY = e.clientY - translateY;
-  });
-
-  window.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    translateX = e.clientX - startX;
-    translateY = e.clientY - startY;
-    applyTransform();
-  });
-
-  window.addEventListener("mouseup", () => {
-    isDragging = false;
+    if(e.key === "ArrowRight"){
+      mostrarImagenSerie(indiceActual + 1);
+    }
   });
 </script>
 
-<!-- SEPARADOR -->
 <hr class="separador">
 
 <footer id="contacto">
