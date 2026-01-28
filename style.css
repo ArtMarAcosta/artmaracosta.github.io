@@ -257,37 +257,47 @@ section {
    GRILLA MENSUAL (MESES)
 ========================= */
 
+/* =========================
+   SERIE MENSUAL — 2 FILAS HORIZONTALES
+========================= */
+
 .grilla-mensual{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding-top: 0;
+  grid-auto-flow: column;      /* llena hacia la derecha */
+  grid-template-rows: repeat(2, auto); /* 2 filas */
+  gap: 18px;
+  overflow-x: auto;            /* scroll horizontal */
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
 }
 
 .mes{
+  width: 170px;                /* tamaño miniatura */
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  cursor: pointer;
+  gap: 8px;
 }
 
 .mes img{
   width: 100%;
-  height: 320px;
+  height: 120px;               /* mini y prolijo */
   object-fit: cover;
+  border-radius: 8px;
   display: block;
-  border-radius: 6px;
-  transition: transform 0.25s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .mes img:hover{
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .mes span{
-  font-size: 0.95rem;
-  opacity: 0.75;
+  font-size: 0.85rem;
+  opacity: 0.7;
   text-align: center;
+  line-height: 1.2;
 }
 
 
