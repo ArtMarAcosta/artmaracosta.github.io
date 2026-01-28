@@ -303,6 +303,9 @@ section {
   line-height: 1.2;
 }
 
+.mes:first-child{ margin-left: 10vw; }
+.mes:last-child{ margin-right: 10vw; }
+
 
 /* =========================
    LIGHTBOX
