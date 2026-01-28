@@ -375,16 +375,6 @@ section {
   }
 }
 
-
-@media (max-width: 520px){
-  .grilla-mensual{
-    grid-template-columns: 1fr;
-  }
-
-  .mes img{
-    height: 240px;
-  }
-}
 /* =========================
    TITULO SERIE (GRILLA MENSUAL)
 ========================= */
