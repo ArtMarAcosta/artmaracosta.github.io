@@ -533,3 +533,8 @@ section {
 #lightbox.zoomed .lightbox-content:active{
   cursor: grabbing;
 }
+
+.obra-click{
+  cursor: zoom-in;
+}
+
