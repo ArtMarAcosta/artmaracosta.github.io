@@ -370,3 +370,28 @@ section {
     height: 240px;
   }
 }
+/* =========================
+   TITULO SERIE (GRILLA MENSUAL)
+========================= */
+
+.serie-titulo{
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.serie-titulo h2{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #e6c8ff;
+  margin-bottom: 14px;
+}
+
+.serie-titulo p{
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  opacity: 0.75;
+  line-height: 1.7;
+}
+
