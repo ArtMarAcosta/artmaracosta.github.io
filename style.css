@@ -635,3 +635,54 @@ section {
 .lightbox-hint.visible{
   opacity: 1;
 }
+/* =========================
+   FADE IN LIGHTBOX
+========================= */
+
+#lightbox{
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+#lightbox.activo{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================
+   FULL SCREEN EN CELU
+========================= */
+
+@media (max-width: 900px){
+  #lightbox{
+    padding: 0;
+  }
+
+  #lightbox .lightbox-content{
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #lightbox-img{
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .flecha.izquierda{
+    left: 10px;
+  }
+
+  .flecha.derecha{
+    right: 10px;
+  }
+
+  .cerrar{
+    top: 10px;
+    right: 14px;
+  }
+}
