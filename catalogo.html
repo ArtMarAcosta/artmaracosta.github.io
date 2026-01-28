@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,7 +21,7 @@
 <section class="catalogo-obras">
 
   <div class="obra-item">
-    <img src="images/arbol.jpg" alt="Árbol de la vida">
+    <img class="obra-click" src="images/arbol.jpg" alt="Árbol de la vida">
     <div class="obra-info">
       <p class="obra-titulo">ÁRBOL DE LA VIDA</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -32,7 +31,7 @@
   </div>
 
   <div class="obra-item">
-    <img src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
+    <img class="obra-click" src="images/naturaleza-ali3n.png" alt="Naturaleza Ali3n">
     <div class="obra-info">
       <p class="obra-titulo">NATURALEZA ALI3N</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -42,157 +41,10 @@
   </div>
 
   <div class="obra-item">
-    <img src="images/img-3999.jpg" alt="Ternura quemada, casita arruinada">
+    <img class="obra-click" src="images/img-3999.jpg" alt="Ternura quemada, casita arruinada">
     <div class="obra-info">
       <p class="obra-titulo">TERNURA QUEMADA, CASITA ARRUINADA</p>
       <p class="obra-detalle">Óleo sobre tela</p>
       <p class="obra-detalle">Diciembre 2022 a Julio 2024</p>
-      <p class="obra-detalle">30 x 40 cm</p>
-    </div>
-  </div>
+      <p class="obra-detalle">3
 
-  <div class="obra-item">
-    <img src="images/palmar2.jpg" alt="El Palmar">
-    <div class="obra-info">
-      <p class="obra-titulo">EL PALMAR</p>
-      <p class="obra-detalle">Óleo sobre tela</p>
-      <p class="obra-detalle">Marzo 2024 a Septiembre 2024</p>
-      <p class="obra-detalle">40 x 50 cm</p>
-    </div>
-  </div>
-
-</section>
-
-<hr class="separador">
-
-  <section class="serie-titulo">
-  <h2>Serie 2025: una pintura por mes</h2>
-</section>
-<section class="serie-wrapper">
-  <div class="grilla-mensual">
-  <div class="mes">
-    <img src="images/enero.jpg" alt="Enero 2025" data-lightbox>
-    <span>Enero 2025</span>
-  </div>
-
-  <div class="mes">
-    <img src="images/febrero.jpg" alt="Febrero 2025" data-lightbox>
-    <span>Febrero 2025</span>
-  </div>
-
-  <div class="mes">
-    <img src="images/marzo.jpg" alt="Marzo 2025" data-lightbox>
-    <span>Marzo 2025</span>
-  </div>
-
-  <div class="mes">
-    <img src="images/abril.jpg" alt="Abril 2025" data-lightbox>
-    <span>Abril 2025</span>
-  </div>
-
-  <div class="mes">
-    <img src="images/mayo.jpg" alt="Mayo 2025" data-lightbox>
-    <span>Mayo 2025</span>
-  </div>
-
-      <div class="mes">
-    <img src="images/julio.jpg" alt="Julio 2025" data-lightbox>
-    <span>Julio 2025</span>
-  </div>
-      <div class="mes">
-    <img src="images/agosto.jpg" alt="Agosto 2025" data-lightbox>
-    <span>Agosto 2025</span>
-  </div>
-      <div class="mes">
-    <img src="images/septiembre.jpg" alt="Septiembre 2025" data-lightbox>
-    <span>Septiembre 2025</span>
-  </div>
-      <div class="mes">
-    <img src="images/octubre.jpg" alt="Octubre 2025" data-lightbox>
-    <span>Octubre 2025</span>
-  </div>
-      <div class="mes">
-    <img src="images/noviembre.jpg" alt="Noviembre 2025" data-lightbox>
-    <span>Noviembre 2025</span>
-  </div>
-        <div class="mes">
-    <img src="images/diciembre.jpg" alt="Diciembre 2025" data-lightbox>
-    <span>Diciembre 2025</span>
-  </div>
-  
-</div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <span class="cerrar">&times;</span>
-  <span class="flecha izquierda">&#10094;</span>
-  <img id="lightbox-img" src="">
-  <span class="flecha derecha">&#10095;</span>
-</div>
-
-<script>
-  const imagenes = document.querySelectorAll("[data-lightbox]");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const cerrar = document.querySelector(".cerrar");
-  const flechaIzq = document.querySelector(".flecha.izquierda");
-  const flechaDer = document.querySelector(".flecha.derecha");
-
-  let indiceActual = 0;
-
-  function mostrarImagen(index) {
-    if (index < 0) index = imagenes.length - 1;
-    if (index >= imagenes.length) index = 0;
-    indiceActual = index;
-    lightboxImg.src = imagenes[indiceActual].src;
-  }
-
-  imagenes.forEach((img, index) => {
-    img.addEventListener("click", () => {
-      indiceActual = index;
-      mostrarImagen(indiceActual);
-      lightbox.classList.add("activo");
-    });
-  });
-
-  flechaIzq.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mostrarImagen(indiceActual - 1);
-  });
-
-  flechaDer.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mostrarImagen(indiceActual + 1);
-  });
-
-  cerrar.addEventListener("click", () => {
-    lightbox.classList.remove("activo");
-  });
-
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.remove("activo");
-    }
-  });
-</script>
-
-  
-    <!-- SEPARADOR -->
-  <hr class="separador">
-  
-<footer id="contacto">
-  <p>
-      <a href="https://instagram.com/astro.mar_" target="_blank">
-        Instagram
-      </a>
-    </p>
-    <p>
-      <a href="mailto:maracosta.artista@gmail.com">
-        Mail
-      </a>
-    </p>
-</footer>
-
-</body>
-</html>
