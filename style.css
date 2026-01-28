@@ -366,14 +366,15 @@ section {
 ========================= */
 
 @media (max-width: 900px){
-  .grilla-mensual{
-    grid-template-columns: repeat(2, 1fr);
+  .mes{
+    width: 150px;
   }
 
   .mes img{
-    height: 260px;
+    height: 110px;
   }
 }
+
 
 @media (max-width: 520px){
   .grilla-mensual{
