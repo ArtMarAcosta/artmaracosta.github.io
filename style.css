@@ -263,12 +263,17 @@ section {
 
 .grilla-mensual{
   display: grid;
-  grid-auto-flow: column;      /* llena hacia la derecha */
-  grid-template-rows: repeat(2, auto); /* 2 filas */
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
   gap: 18px;
-  overflow-x: auto;            /* scroll horizontal */
-  padding: 20px 0;
+
+  /* esto es lo que te arregla el “arranca pegado” */
+  padding: 20px 10vw 20px 10vw;
+
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
+}
+
 }
 
 .mes{
