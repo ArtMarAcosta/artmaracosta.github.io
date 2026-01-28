@@ -420,9 +420,13 @@ section{
 }
 
 /* si hay zoom activo (lo va a poner el JS) */
-#lightbox.zoomed .lightbox-content{
+.lightbox-content.zoom-activo{
   cursor: grab;
 }
+.lightbox-content.zoom-activo:active{
+  cursor: grabbing;
+}
+
 #lightbox.zoomed .lightbox-content:active{
   cursor: grabbing;
 }
