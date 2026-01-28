@@ -46,5 +46,197 @@
       <p class="obra-titulo">TERNURA QUEMADA, CASITA ARRUINADA</p>
       <p class="obra-detalle">Óleo sobre tela</p>
       <p class="obra-detalle">Diciembre 2022 a Julio 2024</p>
-      <p class="obra-detalle">3
+      <p class="obra-detalle">30 x 40 cm</p>
+    </div>
+  </div>
 
+  <div class="obra-item">
+    <img class="obra-click" src="images/palmar2.jpg" alt="El Palmar">
+    <div class="obra-info">
+      <p class="obra-titulo">EL PALMAR</p>
+      <p class="obra-detalle">Óleo sobre tela</p>
+      <p class="obra-detalle">Marzo 2024 a Septiembre 2024</p>
+      <p class="obra-detalle">40 x 50 cm</p>
+    </div>
+  </div>
+
+</section>
+
+<hr class="separador">
+
+<section class="serie-titulo">
+  <h2>Serie 2025: una pintura por mes</h2>
+</section>
+
+<section class="serie-wrapper">
+  <div class="grilla-mensual">
+
+    <div class="mes">
+      <img src="images/enero.jpg" alt="Enero 2025" data-lightbox>
+      <span>Enero 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/febrero.jpg" alt="Febrero 2025" data-lightbox>
+      <span>Febrero 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/marzo.jpg" alt="Marzo 2025" data-lightbox>
+      <span>Marzo 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/abril.jpg" alt="Abril 2025" data-lightbox>
+      <span>Abril 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/mayo.jpg" alt="Mayo 2025" data-lightbox>
+      <span>Mayo 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/julio.jpg" alt="Julio 2025" data-lightbox>
+      <span>Julio 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/agosto.jpg" alt="Agosto 2025" data-lightbox>
+      <span>Agosto 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/septiembre.jpg" alt="Septiembre 2025" data-lightbox>
+      <span>Septiembre 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/octubre.jpg" alt="Octubre 2025" data-lightbox>
+      <span>Octubre 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/noviembre.jpg" alt="Noviembre 2025" data-lightbox>
+      <span>Noviembre 2025</span>
+    </div>
+
+    <div class="mes">
+      <img src="images/diciembre.jpg" alt="Diciembre 2025" data-lightbox>
+      <span>Diciembre 2025</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="cerrar">&times;</span>
+  <span class="flecha izquierda">&#10094;</span>
+  <img id="lightbox-img" src="">
+  <span class="flecha derecha">&#10095;</span>
+</div>
+
+<script>
+  // IMÁGENES DE LA SERIE (con flechas)
+  const imagenesSerie = document.querySelectorAll("[data-lightbox]");
+
+  // IMÁGENES GRANDES (sin flechas)
+  const imagenesGrandes = document.querySelectorAll(".obra-click");
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const cerrar = document.querySelector(".cerrar");
+  const flechaIzq = document.querySelector(".flecha.izquierda");
+  const flechaDer = document.querySelector(".flecha.derecha");
+
+  let indiceActual = 0;
+  let modoSerie = true; // true = serie mensual / false = obras grandes
+
+  function mostrarImagenSerie(index) {
+    if (index < 0) index = imagenesSerie.length - 1;
+    if (index >= imagenesSerie.length) index = 0;
+    indiceActual = index;
+    lightboxImg.src = imagenesSerie[indiceActual].src;
+  }
+
+  function abrirLightbox(src, esSerie) {
+    modoSerie = esSerie;
+
+    // Mostrar u ocultar flechas según el modo
+    if (modoSerie) {
+      flechaIzq.style.display = "block";
+      flechaDer.style.display = "block";
+    } else {
+      flechaIzq.style.display = "none";
+      flechaDer.style.display = "none";
+    }
+
+    lightboxImg.src = src;
+    lightbox.classList.add("activo");
+  }
+
+  // Click en imágenes de la serie (con navegación)
+  imagenesSerie.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      indiceActual = index;
+      abrirLightbox(img.src, true);
+    });
+  });
+
+  // Click en imágenes grandes (sin navegación)
+  imagenesGrandes.forEach((img) => {
+    img.addEventListener("click", () => {
+      abrirLightbox(img.src, false);
+    });
+  });
+
+  // Flechas SOLO funcionan si estás en modo serie
+  flechaIzq.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (!modoSerie) return;
+    mostrarImagenSerie(indiceActual - 1);
+  });
+
+  flechaDer.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (!modoSerie) return;
+    mostrarImagenSerie(indiceActual + 1);
+  });
+
+  cerrar.addEventListener("click", () => {
+    lightbox.classList.remove("activo");
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove("activo");
+    }
+  });
+
+  // ESC para cerrar
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      lightbox.classList.remove("activo");
+    }
+  });
+</script>
+
+<!-- SEPARADOR -->
+<hr class="separador">
+
+<footer id="contacto">
+  <p>
+    <a href="https://instagram.com/astro.mar_" target="_blank">
+      Instagram
+    </a>
+  </p>
+  <p>
+    <a href="mailto:maracosta.artista@gmail.com">
+      Mail
+    </a>
+  </p>
+</footer>
+
+</body>
+</html>
