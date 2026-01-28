@@ -479,5 +479,15 @@ section {
   -webkit-overflow-scrolling: touch;
 }
 
+.mes img{
+  transition: transform 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease;
+}
+
+.mes img:hover{
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(190, 120, 255, 0.35);
+  outline: 1px solid rgba(190, 120, 255, 0.35);
+  outline-offset: 2px;
+}
 
 
