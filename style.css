@@ -394,4 +394,33 @@ section {
   opacity: 0.75;
   line-height: 1.7;
 }
+/* =========================
+   CATALOGO (OBRAS GRANDES)
+========================= */
+
+.catalogo-obras{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80px 60px;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.obra-item img{
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+}
+
+.obra-item .obra-info{
+  text-align: center;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px){
+  .catalogo-obras{
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
 
