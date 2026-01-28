@@ -434,28 +434,25 @@ section {
 
 .serie-wrapper{
   position: relative;
-  padding: 0; /* así no suma padding doble con tus sections */
+  padding: 0;
 }
 
-/* los velos */
 .serie-wrapper::before,
 .serie-wrapper::after{
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 10vw;                 /* igual que el margen general */
+  width: 10vw;
   pointer-events: none;
   z-index: 5;
 }
 
-/* fade izquierdo */
 .serie-wrapper::before{
   left: 0;
   background: linear-gradient(to right, #15151d 0%, rgba(21,21,29,0) 100%);
 }
 
-/* fade derecho */
 .serie-wrapper::after{
   right: 0;
   background: linear-gradient(to left, #15151d 0%, rgba(21,21,29,0) 100%);
@@ -474,13 +471,13 @@ section {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 
-  /* margen real */
   padding: 20px 10vw;
 
   scroll-padding-left: 10vw;
   scroll-padding-right: 10vw;
 
-  /* más suave */
   -webkit-overflow-scrolling: touch;
 }
+
+
 
