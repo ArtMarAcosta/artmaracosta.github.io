@@ -129,51 +129,114 @@
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <span class="cerrar">&times;</span>
-  <span class="flecha izquierda">&#10094;</span>
-  <img id="lightbox-img" src="">
-  <span class="flecha derecha">&#10095;</span>
+<!-- LIGHTBOX (UNICO) -->
+<div id="lightbox" aria-hidden="true">
+  <span class="cerrar" id="cerrar-lightbox">&times;</span>
+
+  <span class="flecha izquierda" id="flecha-izq">&#10094;</span>
+
+  <div class="lightbox-content" id="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-hint" id="lightbox-hint">
+      Scroll para zoom · Arrastrá para mover · Doble click para reset
+    </div>
+  </div>
+
+  <span class="flecha derecha" id="flecha-der">&#10095;</span>
 </div>
 
 <script>
   // IMÁGENES DE LA SERIE (con flechas)
   const imagenesSerie = document.querySelectorAll("[data-lightbox]");
 
-  // IMÁGENES GRANDES (sin flechas)
+  // IMÁGENES GRANDES (modo museo)
   const imagenesGrandes = document.querySelectorAll(".obra-click");
 
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
-  const cerrar = document.querySelector(".cerrar");
-  const flechaIzq = document.querySelector(".flecha.izquierda");
-  const flechaDer = document.querySelector(".flecha.derecha");
+  const lightboxContent = document.getElementById("lightbox-content");
+
+  const cerrarBtn = document.getElementById("cerrar-lightbox");
+  const flechaIzq = document.getElementById("flecha-izq");
+  const flechaDer = document.getElementById("flecha-der");
+  const hint = document.getElementById("lightbox-hint");
 
   let indiceActual = 0;
   let modoSerie = true; // true = serie mensual / false = obras grandes
+
+  // ===== ZOOM + PAN =====
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+
+  function applyTransform() {
+    lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  }
+
+  function resetZoom() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    lightbox.classList.remove("zoomed");
+    applyTransform();
+  }
+
+  function setZoom(newScale) {
+    scale = Math.min(4, Math.max(1, newScale)); // 1x a 4x
+
+    if (scale > 1) {
+      lightbox.classList.add("zoomed");
+    } else {
+      lightbox.classList.remove("zoomed");
+      translateX = 0;
+      translateY = 0;
+    }
+
+    applyTransform();
+  }
+
+  // ===== ABRIR LIGHTBOX =====
+  function abrirLightbox(src, esSerie) {
+    modoSerie = esSerie;
+
+    // modo museo para obras grandes (tapa menos)
+    if (!modoSerie) {
+      lightbox.classList.add("modo-museo");
+    } else {
+      lightbox.classList.remove("modo-museo");
+    }
+
+    // flechas solo si es serie
+    flechaIzq.style.display = modoSerie ? "block" : "none";
+    flechaDer.style.display = modoSerie ? "block" : "none";
+
+    // mostrar hint un ratito
+    hint.classList.add("visible");
+    setTimeout(() => hint.classList.remove("visible"), 2500);
+
+    lightboxImg.src = src;
+    lightbox.classList.add("activo");
+    lightbox.setAttribute("aria-hidden", "false");
+
+    resetZoom();
+  }
+
+  function cerrarLightbox() {
+    lightbox.classList.remove("activo");
+    lightbox.setAttribute("aria-hidden", "true");
+    resetZoom();
+  }
 
   function mostrarImagenSerie(index) {
     if (index < 0) index = imagenesSerie.length - 1;
     if (index >= imagenesSerie.length) index = 0;
     indiceActual = index;
     lightboxImg.src = imagenesSerie[indiceActual].src;
-  }
-
-  function abrirLightbox(src, esSerie) {
-    modoSerie = esSerie;
-
-    // Mostrar u ocultar flechas según el modo
-    if (modoSerie) {
-      flechaIzq.style.display = "block";
-      flechaDer.style.display = "block";
-    } else {
-      flechaIzq.style.display = "none";
-      flechaDer.style.display = "none";
-    }
-
-    lightboxImg.src = src;
-    lightbox.classList.add("activo");
+    resetZoom();
   }
 
   // Click en imágenes de la serie (con navegación)
@@ -184,14 +247,14 @@
     });
   });
 
-  // Click en imágenes grandes (sin navegación)
+  // Click en imágenes grandes (modo museo)
   imagenesGrandes.forEach((img) => {
     img.addEventListener("click", () => {
       abrirLightbox(img.src, false);
     });
   });
 
-  // Flechas SOLO funcionan si estás en modo serie
+  // Flechas SOLO si estás en modo serie
   flechaIzq.addEventListener("click", (e) => {
     e.stopPropagation();
     if (!modoSerie) return;
@@ -204,21 +267,66 @@
     mostrarImagenSerie(indiceActual + 1);
   });
 
-  cerrar.addEventListener("click", () => {
-    lightbox.classList.remove("activo");
-  });
+  // Cerrar
+  cerrarBtn.addEventListener("click", cerrarLightbox);
 
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.remove("activo");
-    }
+    if (e.target === lightbox) cerrarLightbox();
   });
 
   // ESC para cerrar
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      lightbox.classList.remove("activo");
+    if (e.key === "Escape") cerrarLightbox();
+  });
+
+  // ===== ZOOM EVENTS =====
+
+  // click = zoom rápido
+  lightboxContent.addEventListener("click", (e) => {
+    if (isDragging) return;
+
+    if (scale === 1) {
+      setZoom(2);
+    } else {
+      resetZoom();
     }
+  });
+
+  // doble click = reset
+  lightboxContent.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+    resetZoom();
+  });
+
+  // ruedita = zoom suave
+  lightboxContent.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const zoomIntensity = 0.12;
+
+    if (e.deltaY < 0) {
+      setZoom(scale + zoomIntensity);
+    } else {
+      setZoom(scale - zoomIntensity);
+    }
+  }, { passive: false });
+
+  // arrastrar = pan cuando hay zoom
+  lightboxContent.addEventListener("mousedown", (e) => {
+    if (scale === 1) return;
+    isDragging = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+    applyTransform();
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
   });
 </script>
 
