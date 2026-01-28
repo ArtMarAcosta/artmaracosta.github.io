@@ -261,7 +261,7 @@ section {
 .grilla-mensual{
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(6, 1fr);
   gap: 18px;
 
   overflow-x: auto;
