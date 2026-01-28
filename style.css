@@ -267,10 +267,12 @@ section {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 
+  /* MARGEN REAL (igual que el resto del sitio) */
+  padding: 20px 10vw;
+
+  /* opcional: hace que al scrollear “arranque” respetando el margen */
   scroll-padding-left: 10vw;
   scroll-padding-right: 10vw;
-
-  padding: 20px 0;
 }
 
 
@@ -302,10 +304,6 @@ section {
   text-align: center;
   line-height: 1.2;
 }
-
-.mes:first-child{ margin-left: 10vw; }
-.mes:last-child{ margin-right: 10vw; }
-
 
 /* =========================
    LIGHTBOX
