@@ -253,9 +253,6 @@ section {
   margin-bottom: 20px;
 }
 
-/* =========================
-   GRILLA MENSUAL (MESES)
-========================= */
 
 /* =========================
    SERIE MENSUAL — 2 FILAS HORIZONTALES
@@ -267,14 +264,15 @@ section {
   grid-template-rows: repeat(2, auto);
   gap: 18px;
 
-  /* esto es lo que te arregla el “arranca pegado” */
-  padding: 20px 10vw 20px 10vw;
-
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+
+  scroll-padding-left: 10vw;
+  scroll-padding-right: 10vw;
+
+  padding: 20px 0;
 }
 
-}
 
 .mes{
   width: 170px;                /* tamaño miniatura */
