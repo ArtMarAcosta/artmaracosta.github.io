@@ -5,22 +5,29 @@
   <title>Catálogo — Mar Acosta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
   <meta name="description" content="Catálogo de obras de Mar Acosta, pintura contemporánea surrealista.">
 
-  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+
+  <!-- MICRO ANIMACIÓN LIGHTBOX -->
+  <style>
+    #lightbox {
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    #lightbox.activo {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- MENU -->
 <nav class="menu">
   <button class="menu-btn" aria-label="Abrir menú">☰</button>
   <div class="menu-panel">
@@ -29,7 +36,6 @@
   </div>
 </nav>
 
-<!-- CATALOGO -->
 <section class="catalogo-obras">
 
   <div class="obra-item">
@@ -47,8 +53,7 @@
   </div>
 
   <div class="obra-item">
-    <img class="obra-click" src="images/arbol.jpg" loading="lazy"
-         alt="Árbol simbólico con colores vibrantes">
+    <img class="obra-click" src="images/arbol.jpg" loading="lazy" alt="Árbol simbólico">
     <div class="obra-info">
       <p class="obra-titulo">ÁRBOL DE LA VIDA</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -58,8 +63,7 @@
   </div>
 
   <div class="obra-item">
-    <img class="obra-click" src="images/naturaleza-ali3n.png" loading="lazy"
-         alt="Paisaje surrealista con estética alienígena">
+    <img class="obra-click" src="images/naturaleza-ali3n.png" loading="lazy" alt="Paisaje alienígena">
     <div class="obra-info">
       <p class="obra-titulo">NATURALEZA ALI3N</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -69,8 +73,7 @@
   </div>
 
   <div class="obra-item">
-    <img class="obra-click" src="images/img-3999.jpg" loading="lazy"
-         alt="Escena pictórica con atmósfera emocional intensa">
+    <img class="obra-click" src="images/img-3999.jpg" loading="lazy" alt="Escena emocional">
     <div class="obra-info">
       <p class="obra-titulo">TERNURA QUEMADA, CASITA ARRUINADA</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -80,8 +83,7 @@
   </div>
 
   <div class="obra-item">
-    <img class="obra-click" src="images/palmar2.jpg" loading="lazy"
-         alt="Paisaje con palmeras y composición atmosférica">
+    <img class="obra-click" src="images/palmar2.jpg" loading="lazy" alt="Paisaje con palmeras">
     <div class="obra-info">
       <p class="obra-titulo">EL PALMAR</p>
       <p class="obra-detalle">Óleo sobre tela</p>
@@ -94,7 +96,6 @@
 
 <hr class="separador">
 
-<!-- SERIE -->
 <section class="serie-titulo">
   <h2>Serie 2025: una pintura por mes</h2>
 </section>
@@ -102,17 +103,17 @@
 <section class="serie-wrapper">
   <div class="grilla-mensual">
 
-    <div class="mes"><img src="images/enero.jpg" loading="lazy" alt="Enero 2025" data-lightbox><span>Enero 2025</span></div>
-    <div class="mes"><img src="images/febrero.jpg" loading="lazy" alt="Febrero 2025" data-lightbox><span>Febrero 2025</span></div>
-    <div class="mes"><img src="images/marzo.jpg" loading="lazy" alt="Marzo 2025" data-lightbox><span>Marzo 2025</span></div>
-    <div class="mes"><img src="images/abril.jpg" loading="lazy" alt="Abril 2025" data-lightbox><span>Abril 2025</span></div>
-    <div class="mes"><img src="images/mayo.jpg" loading="lazy" alt="Mayo 2025" data-lightbox><span>Mayo 2025</span></div>
-    <div class="mes"><img src="images/julio.jpg" loading="lazy" alt="Julio 2025" data-lightbox><span>Julio 2025</span></div>
-    <div class="mes"><img src="images/agosto.jpg" loading="lazy" alt="Agosto 2025" data-lightbox><span>Agosto 2025</span></div>
-    <div class="mes"><img src="images/septiembre.jpg" loading="lazy" alt="Septiembre 2025" data-lightbox><span>Septiembre 2025</span></div>
-    <div class="mes"><img src="images/octubre.jpg" loading="lazy" alt="Octubre 2025" data-lightbox><span>Octubre 2025</span></div>
-    <div class="mes"><img src="images/noviembre.jpg" loading="lazy" alt="Noviembre 2025" data-lightbox><span>Noviembre 2025</span></div>
-    <div class="mes"><img src="images/diciembre.jpg" loading="lazy" alt="Diciembre 2025" data-lightbox><span>Diciembre 2025</span></div>
+    <div class="mes"><img src="images/enero.jpg" loading="lazy" data-lightbox><span>Enero</span></div>
+    <div class="mes"><img src="images/febrero.jpg" loading="lazy" data-lightbox><span>Febrero</span></div>
+    <div class="mes"><img src="images/marzo.jpg" loading="lazy" data-lightbox><span>Marzo</span></div>
+    <div class="mes"><img src="images/abril.jpg" loading="lazy" data-lightbox><span>Abril</span></div>
+    <div class="mes"><img src="images/mayo.jpg" loading="lazy" data-lightbox><span>Mayo</span></div>
+    <div class="mes"><img src="images/julio.jpg" loading="lazy" data-lightbox><span>Julio</span></div>
+    <div class="mes"><img src="images/agosto.jpg" loading="lazy" data-lightbox><span>Agosto</span></div>
+    <div class="mes"><img src="images/septiembre.jpg" loading="lazy" data-lightbox><span>Septiembre</span></div>
+    <div class="mes"><img src="images/octubre.jpg" loading="lazy" data-lightbox><span>Octubre</span></div>
+    <div class="mes"><img src="images/noviembre.jpg" loading="lazy" data-lightbox><span>Noviembre</span></div>
+    <div class="mes"><img src="images/diciembre.jpg" loading="lazy" data-lightbox><span>Diciembre</span></div>
 
   </div>
 </section>
@@ -138,19 +139,37 @@ const lightboxImg = document.getElementById("lightbox-img");
 const cerrar = document.querySelector(".cerrar");
 const flechaIzq = document.querySelector(".flecha.izquierda");
 const flechaDer = document.querySelector(".flecha.derecha");
+const content = document.querySelector(".lightbox-content");
 
 let indiceActual = 0;
 let modoSerie = true;
 
-function mostrarImagenSerie(index) {
-  if (index < 0) index = imagenesSerie.length - 1;
-  if (index >= imagenesSerie.length) index = 0;
-  indiceActual = index;
-  lightboxImg.src = imagenesSerie[indiceActual].src;
+let scale = 1;
+let x = 0;
+let y = 0;
+let dragging = false;
+let startX, startY;
+
+function updateTransform() {
+  lightboxImg.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+}
+
+function resetZoom() {
+  scale = 1;
+  x = 0;
+  y = 0;
+  updateTransform();
+}
+
+function clamp() {
+  const limit = 300;
+  x = Math.max(-limit, Math.min(limit, x));
+  y = Math.max(-limit, Math.min(limit, y));
 }
 
 function abrirLightbox(src, esSerie) {
   modoSerie = esSerie;
+  resetZoom();
 
   flechaIzq.style.display = esSerie ? "block" : "none";
   flechaDer.style.display = esSerie ? "block" : "none";
@@ -159,44 +178,75 @@ function abrirLightbox(src, esSerie) {
   lightbox.classList.add("activo");
 }
 
-imagenesSerie.forEach((img, index) => {
+imagenesGrandes.forEach(img => {
+  img.addEventListener("click", () => abrirLightbox(img.src, false));
+});
+
+imagenesSerie.forEach((img, i) => {
   img.addEventListener("click", () => {
-    indiceActual = index;
+    indiceActual = i;
     abrirLightbox(img.src, true);
   });
 });
 
-imagenesGrandes.forEach((img) => {
-  img.addEventListener("click", () => {
-    abrirLightbox(img.src, false);
-  });
-});
-
-flechaIzq.addEventListener("click", (e) => {
+flechaIzq.onclick = e => {
   e.stopPropagation();
   if (!modoSerie) return;
-  mostrarImagenSerie(indiceActual - 1);
-});
+  indiceActual = (indiceActual - 1 + imagenesSerie.length) % imagenesSerie.length;
+  lightboxImg.src = imagenesSerie[indiceActual].src;
+};
 
-flechaDer.addEventListener("click", (e) => {
+flechaDer.onclick = e => {
   e.stopPropagation();
   if (!modoSerie) return;
-  mostrarImagenSerie(indiceActual + 1);
+  indiceActual = (indiceActual + 1) % imagenesSerie.length;
+  lightboxImg.src = imagenesSerie[indiceActual].src;
+};
+
+cerrar.onclick = () => lightbox.classList.remove("activo");
+
+// 🔥 cerrar clickeando imagen
+lightboxImg.onclick = () => lightbox.classList.remove("activo");
+
+lightbox.onclick = e => {
+  if (e.target === lightbox) lightbox.classList.remove("activo");
+};
+
+// zoom con rueda
+content.addEventListener("wheel", e => {
+  e.preventDefault();
+  scale += -e.deltaY * 0.001;
+  scale = Math.max(1, Math.min(4, scale));
+  updateTransform();
 });
 
-cerrar.addEventListener("click", () => {
-  lightbox.classList.remove("activo");
+// drag
+content.addEventListener("mousedown", e => {
+  if (scale === 1) return;
+  dragging = true;
+  startX = e.clientX - x;
+  startY = e.clientY - y;
 });
 
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) {
-    lightbox.classList.remove("activo");
-  }
+window.addEventListener("mousemove", e => {
+  if (!dragging) return;
+  x = e.clientX - startX;
+  y = e.clientY - startY;
+  clamp();
+  updateTransform();
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    lightbox.classList.remove("activo");
+window.addEventListener("mouseup", () => dragging = false);
+
+// teclado
+document.addEventListener("keydown", e => {
+  if (!lightbox.classList.contains("activo")) return;
+
+  if (e.key === "Escape") lightbox.classList.remove("activo");
+
+  if (modoSerie) {
+    if (e.key === "ArrowLeft") flechaIzq.click();
+    if (e.key === "ArrowRight") flechaDer.click();
   }
 });
 </script>
